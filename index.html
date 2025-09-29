@@ -1,0 +1,90 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SabalahTech — Chicken Farm Survey & Budget</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <h1>SabalahTech — Chicken Farm Manager (MVP)</h1>
+    <p class="muted">Collect surveys, budgets, daily records. Free + GitHub Pages + Google Sheets.</p>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h2>Submit Entry</h2>
+      <p class="muted">Choose category then fill fields. One endpoint stores everything in one sheet for now.</p>
+      <form id="entryForm">
+        <label>Category
+          <select id="category" required>
+            <option value="Survey">Survey</option>
+            <option value="Budget">Budget</option>
+            <option value="FarmRecord">FarmRecord</option>
+          </select>
+        </label>
+
+        <label>Type
+          <input id="type" placeholder="e.g. FeedPrice / Vaccine / Mortality" required />
+        </label>
+
+        <label>Field 1
+          <input id="field1" placeholder="e.g. supplier or amount" />
+        </label>
+
+        <label>Field 2
+          <input id="field2" placeholder="e.g. unit cost or count" />
+        </label>
+
+        <label>Field 3
+          <input id="field3" placeholder="extra info" />
+        </label>
+
+        <label>Notes
+          <textarea id="notes" placeholder="Any notes..."></textarea>
+        </label>
+
+        <div class="form-actions">
+          <button type="submit">Submit</button>
+          <button type="button" id="clearBtn">Clear Form</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>Live Data</h2>
+      <div class="controls">
+        <button id="refreshBtn">Refresh</button>
+        <button id="exportBtn">Download CSV</button>
+      </div>
+      <div id="tableWrap">Loading data...</div>
+    </section>
+
+    <section class="card small">
+      <h3>Edit / Delete (Advanced)</h3>
+      <p class="muted">To update or delete a row you need the exact row number (visible in table). Use with care.</p>
+      <label>Row number
+        <input id="rowIndex" placeholder="Row number (2 = first data row)" />
+      </label>
+      <label>New Notes (for update)
+        <input id="updateNotes" placeholder="New notes if updating" />
+      </label>
+      <div class="form-actions">
+        <button id="updateBtn">Update Row</button>
+        <button id="deleteBtn">Delete Row</button>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <small>Built for SabalahTech — free MVP. Upgrade later for auth & advanced features.</small>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
+
+
