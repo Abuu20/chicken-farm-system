@@ -1,6 +1,6 @@
 
 // == IMPORTANT: paste your Apps Script web app URL below ==
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxHQC2H1LCCPwUzIkRGaV23BlUY133oY5oFg9DwsqEACLX8bE7FYqOj76ShuZ21M0pe/exec';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyMXOm0qDQfRZMgnmiR2Y8Ktke8ZgG9qqXd7tTEZsvczfNSHmdCBDOkULqifwy97cnr/exec';
 
 const entryForm = document.getElementById('entryForm');
 const refreshBtn = document.getElementById('refreshBtn');
