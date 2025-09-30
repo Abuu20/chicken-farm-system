@@ -2,37 +2,46 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chicken Farm Survey</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Chicken Farm Test Form</title>
 </head>
 <body>
-  <h1>🐔 Chicken Farm Survey Form</h1>
-  
-  <form id="dataForm">
-    <label>Category:</label>
-    <input type="text" name="category" required><br>
+  <h2>Test Submit to Google Sheet</h2>
 
-    <label>Type:</label>
-    <input type="text" name="type"><br>
-
-    <label>Field1:</label>
-    <input type="text" name="field1"><br>
-
-    <label>Field2:</label>
-    <input type="text" name="field2"><br>
-
-    <label>Field3:</label>
-    <input type="text" name="field3"><br>
-
-    <label>Notes:</label>
-    <input type="text" name="notes"><br>
-
+  <form id="testForm">
+    <label>
+      Test Value: 
+      <input type="text" name="field1" required>
+    </label>
     <button type="submit">Submit</button>
   </form>
 
-  <div id="response"></div>
+  <p id="response"></p>
 
-  <script src="app.js"></script>
+  <script>
+    // ⚡ Replace this with your actual deployed Web App URL
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxHQC2H1LCCPwUzIkRGaV23BlUY133oY5oFg9DwsqEACLX8bE7FYqOj76ShuZ21M0pe/exec";
+
+    document.getElementById("testForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const formData = new FormData(this);
+      const data = {};
+      formData.forEach((value, key) => data[key] = value);
+
+      fetch(SCRIPT_URL, {
+        method: "POST",
+        body: JSON.stringify({ action: "append", ...data }),
+        headers: { "Content-Type": "application/json" }
+      })
+      .then(res => res.json())
+      .then(json => {
+        document.getElementById("response").innerText = "✅ Response: " + JSON.stringify(json);
+        this.reset();
+      })
+      .catch(err => {
+        document.getElementById("response").innerText = "❌ Error: " + err.message;
+      });
+    });
+  </script>
 </body>
 </html>
